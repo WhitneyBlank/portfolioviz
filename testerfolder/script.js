@@ -1,3 +1,60 @@
+var i, arr =[];
+
+var splat;
+var ps;
+var waht;
+var url = 'https://nasdaqviz.herokuapp.com/api/v1.1/markets/data/nsdaq/realtime/';
+var urltwo = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22"+splat+"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
+var blah;
+var splart;
+    
+
+//     (function getStockPrice(){
+//          //var fullprice = "default";
+//          $.getJSON(url+"BLK", function (jsonData){
+//          // fullprice = jsonData.Price;
+//         //ps = jsonData.query.results.quote.YearLow;
+//          ps =jsonData['Price'];
+//          //callback(ps);
+//          console.log(ps);
+//   });
+// })();
+
+
+
+
+
+
+///////////////here is the chunk that seems to be as close as I've gotten//////////////////////////
+var symbols = d3.csv("symbols.csv", function(data){
+    var arrayLength = data.length;
+    for (var i = 0; i< arrayLength; i++){
+      var tickersymbol = data.ticker;
+      splat = data[i];
+      //console.log(splat);
+    
+    $.getJSON(url+splat, function (jsonData){
+         //this is the request that works if I'm using the yahoo finance api:////
+        //ps = jsonData.query.results.quote.YearLow;
+         //this works for the nasdaqviz:///
+         ps =jsonData['Price'];
+         console.log(ps);
+
+ })
+     };
+  });
+///splat above will print out the ticker symbols. To get the $.getJSON to work you can erase splat and and "BLK"
+///here is where I'd theoretically use the data gathered above, but the variables defined within (even if declared globally) are undefined when out here.////
+
+
+//after this is nothing but failure///....the autobiography of Whitney
+
+
+
+
+
+
+
 
   //d3.csv(portfolio.csv)
   //.row(function(d) {
@@ -27,46 +84,9 @@
     //var xox = str.split(' ');
     //console.log(xox);
 //});
-var i, arr =[];
-
-var splat;
-var ps;
-var waht;
-var url = 'https://nasdaqviz.herokuapp.com/api/v1.1/markets/data/nsdaq/realtime/BLK';
-//var jsonObject;
-var blah;
-var splart;
-    
-
-//     ( function getStockPrice(){
-//          // var urltwo = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22"+splat+"%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
-//          //var fullprice = "default";
-//          $.getJSON(url+"BLK", function (jsonData){
-//          // fullprice = jsonData.Price;
-//         //ps = jsonData.query.results.quote.YearLow;
-//          ps =jsonData['Price'];
-//          //callback(ps);
-//          console.log(ps);
 
 
-//   });
-// })();
 
-var symbols = d3.csv("symbols.csv", function(data){
-    var arrayLength = data.length;
-    for (var i = 0; i< arrayLength; i++){
-      var tickersymbol = data.ticker;
-      splat = data[i];
-      //console.log(splat);
-    
-    $.getJSON(url, function (jsonData){
-        //ps = jsonData.query.results.quote.YearLow;
-         ps =jsonData['Price'];
-         console.log(ps);
-
- })
-     };
-  });
 
 
     // //(function getStockPrice(){
