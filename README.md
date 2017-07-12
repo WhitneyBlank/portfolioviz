@@ -1,5 +1,7 @@
 # trumpsite
 
+I switched into the new code using script2.js (as a new file)   tester.html is updated to seek script2.js 
+
 The symbols.csv file is a list of all of the ticker symbols to iterate through and append to the end of the api url call. 
 The "for copying and pasting" file contains the amount of each stock owned. For future use once I can get the JSON price data to be useable. 
 
