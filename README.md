@@ -1,4 +1,4 @@
-# trumpsite
+# portfolioviz
 Most of the pertinent code is in script2.js
 
 I need help to append the returned data to a chart rather than simply print them to the body. I realize I will need the historical data, rather than the now data to do a time-series chart.
