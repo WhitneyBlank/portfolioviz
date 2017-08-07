@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+  <head>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script> -->
+   <!-- <script src="https://d3js.org/d3.v4.min.js"></script>
+   <script src="http://colineberhardt.github.io/d3fc/Layout.js"></script>
+   <script src="http://colineberhardt.github.io/d3fc/d3fc.js"></script>
+   <link href="http://colineberhardt.github.io/d3fc/d3fc.css" rel="stylesheet"/> -->
+   <script src="jQuery.js"></script>
+   <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  </head>
+<body>
+<script type="text/javascript"></script>
+  <svg id='time-series' style='height: 300px; width: 100%;'></svg>
+ 
+
+
+<meta charset="utf-8">
+<title>Streamgraph</title>
+<meta charset="utf-8">
+<style> /* set the CSS */
+</style>
+<body>
+
+<!-- load the d3.js library -->    
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+var i=[];
+var splat;
+var symbols = d3.csv("symbols.csv", function(data){
+    var arrayLength = data.length;
+
+    for (var i = 0; i< arrayLength; i++){
+      var symbol = data[i].ticker;
+      var yahooURL = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%3D%22"+symbol+"%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
+      var yahooURL2 = "https://developer.yahoo.com/yql/console/?q=show%20tables&env=store://datatables.org/alltableswithkeys#h=select"+symbol+"from+yahoo.finance.historicaldata+where+symbol+%3D+%22YHOO%22+and+startDate+%3D+%222009-09-11%22+and+endDate+%3D+%222010-03-10%22";
+      var alphaurl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol="+"BLK"+"&outputsize=compact&apikey=Q1QG9EQQKH2AZ44F";
+      var alphaurlcsv = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+symbol+"&outputsize=compact&apikey=Q1QG9EQQKH2AZ44F&datatype=csv";
+      var herokuappURL = "https://nasdaqviz.herokuapp.com/api/v1.1/markets/data/nsdaq/realtime/"+symbol;
+      
+      splat = data[i];
+
+     
+      var yo = d3.csv(alphaurlcsv, function(data){
+          data.forEach(function(d){
+          var arrayLength2 = data.length;
+          for (var i = 0; i< arrayLength; i++){
+            var pricesReturn = data[i];
+            console.log(pricesReturn["close"]);
+          }
+          d.date = parseDate(d.date);
+          d.close = +d.close;
+
+      });
+     });
+
+     }; 
+});
+
+</script>
+</html>
+
